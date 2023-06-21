@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://coa0sjront4br"]
+
+[ext_resource type="Texture2D" uid="uid://ds7cw5n1wm103" path="res://asteroid.png" id="1_2hasm"]
+[ext_resource type="Script" path="res://Rock.gd" id="1_ojbkp"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2rydq"]
+radius = 50.0
+height = 104.0
+
+[node name="Rock" type="Area2D"]
+position = Vector2(352, 306)
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_ojbkp")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(3, 0)
+scale = Vector2(0.0419832, 0.046686)
+texture = ExtResource("1_2hasm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-9, -17)
+shape = SubResource("CapsuleShape2D_2rydq")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

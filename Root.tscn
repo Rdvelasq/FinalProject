@@ -1,0 +1,58 @@
+[gd_scene load_steps=8 format=3 uid="uid://chex62r5ibo0t"]
+
+[ext_resource type="PackedScene" uid="uid://jbuxsuu0h23v" path="res://Player.tscn" id="1_1sd30"]
+[ext_resource type="Script" path="res://Root.gd" id="1_3l13g"]
+[ext_resource type="PackedScene" uid="uid://coa0sjront4br" path="res://Rock.tscn" id="2_bt5jd"]
+[ext_resource type="PackedScene" uid="uid://bdab14gs7t0gh" path="res://Projectile.tscn" id="4_6qke8"]
+[ext_resource type="Texture2D" uid="uid://c2agvfvakcpje" path="res://space.jpg" id="5_r65gp"]
+[ext_resource type="Script" path="res://Label.gd" id="6_c66os"]
+[ext_resource type="Script" path="res://TextEditScript.gd" id="7_7a4u4"]
+
+[node name="Root" type="Node2D"]
+script = ExtResource("1_3l13g")
+
+[node name="Player" parent="." instance=ExtResource("1_1sd30")]
+position = Vector2(449, 803)
+
+[node name="Rock" parent="." instance=ExtResource("2_bt5jd")]
+position = Vector2(403, -187)
+speed = 9
+
+[node name="Projectile" parent="." instance=ExtResource("4_6qke8")]
+position = Vector2(-262, 534)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="TextureRect" type="TextureRect" parent="."]
+z_index = -1
+offset_left = -1964.0
+offset_top = -139.0
+offset_right = 1036.0
+offset_bottom = 1861.0
+texture = ExtResource("5_r65gp")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 399.0
+offset_top = 10.0
+offset_right = 486.0
+offset_bottom = 40.0
+text = "0"
+script = ExtResource("6_c66os")
+
+[node name="TextEdit" type="TextEdit" parent="."]
+offset_left = 39.0
+offset_top = 917.0
+offset_right = 302.0
+offset_bottom = 1023.0
+tooltip_text = "Keyboard arrows: For Movement 
+
+Spacebar: Shoot"
+placeholder_text = "View Instructions"
+editable = false
+script = ExtResource("7_7a4u4")
+
+[connection signal="body_entered" from="Rock" to="Player" method="_on_rock_body_entered"]
+[connection signal="body_shape_entered" from="Rock" to="Player" method="_on_rock_body_shape_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

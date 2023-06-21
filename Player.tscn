@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://jbuxsuu0h23v"]
+
+[ext_resource type="Script" path="res://Player.gd" id="1_itoem"]
+[ext_resource type="PackedScene" uid="uid://bdab14gs7t0gh" path="res://Projectile.tscn" id="2_q445b"]
+[ext_resource type="Texture2D" uid="uid://dahr2gi7258ah" path="res://space-ship.png" id="3_1v8m1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p00ya"]
+size = Vector2(152, 121)
+
+[node name="Player" type="CharacterBody2D"]
+position = Vector2(261, 731)
+collision_mask = 2
+script = ExtResource("1_itoem")
+projectile = ExtResource("2_q445b")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 1)
+scale = Vector2(0.267764, 0.275047)
+texture = ExtResource("3_1v8m1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_p00ya")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(1, -99)
